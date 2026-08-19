@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNC Checker • ICO</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fdf6e8'/%3E%3Cpath d='M12 32c8-12 18-18 20-18s12 6 20 18c-8 12-18 18-20 18s-12-6-20-18z' fill='none' stroke='%23e6a817' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%233db8b8'/%3E%3Ccircle cx='32' cy='32' r='4.5' fill='%231a3a5c'/%3E%3Cpath d='M22 42c-2 6-2 10 1 14' fill='none' stroke='%23e6a817' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M44 40c3 4 6 5 10 4' fill='none' stroke='%23e6a817' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #fdf6e8;
+            --sand-2: #f8ecd2;
+            --cream: #fffdf5;
+            --white: #ffffff;
+            --gold: #e6a817;
+            --gold-deep: #c48710;
+            --gold-soft: rgba(230, 168, 23, 0.28);
+            --gold-line: rgba(230, 168, 23, 0.35);
+            --turquoise: #3db8b8;
+            --turquoise-2: #5ad0d0;
+            --turquoise-glow: rgba(61, 184, 184, 0.35);
+            --coral: #f25f4c;
+            --coral-2: #ff7a6b;
+            --coral-glow: rgba(242, 95, 76, 0.35);
+            --ink: #3d2e1e;
+            --ink-soft: rgba(61, 46, 30, 0.65);
+            --ink-faint: rgba(61, 46, 30, 0.35);
+            --pupil: #1a3a5c;
+            --radius: 24px;
+            --shadow: 0 20px 60px -15px rgba(180, 150, 80, 0.25), 0 8px 24px -8px rgba(180, 150, 80, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(1000px 500px at 20% -5%, rgba(230, 168, 23, 0.15), transparent 60%),
+                radial-gradient(900px 500px at 85% 110%, rgba(61, 184, 184, 0.12), transparent 60%),
+                radial-gradient(700px 400px at 50% 60%, rgba(242, 95, 76, 0.05), transparent 60%),
+                var(--sand);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatOrb 12s ease-in-out infinite;
+        }
+        body::before {
+            width: 320px;
+            height: 320px;
+            top: -80px;
+            left: -60px;
+            background: radial-gradient(circle at 30% 30%, rgba(230, 168, 23, 0.18), transparent 70%);
+            animation-delay: 0s;
+        }
+        body::after {
+            width: 280px;
+            height: 280px;
+            bottom: -60px;
+            right: -50px;
+            background: radial-gradient(circle at 60% 60%, rgba(61, 184, 184, 0.15), transparent 70%);
+            animation-delay: -6s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            33% { transform: translateY(-20px) translateX(10px); }
+            66% { transform: translateY(12px) translateX(-8px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .card {
+            width: 100%;
+            max-width: 520px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+            border: 1.5px solid var(--gold-line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px 26px 26px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--gold-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--gold-line) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border: 1.5px dashed var(--gold-soft);
+            border-radius: calc(var(--radius) - 4px);
+            pointer-events: none;
+            opacity: 0.55;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eye-wrap {
+            width: 260px;
+            height: 170px;
+            position: relative;
+            z-index: 2;
+            animation: floatY 4s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
+        }
+
+        .eye-bounce {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.35s ease;
+        }
+
+        .card.state-good .eye-bounce {
+            animation: happyBounce 0.65s ease;
+        }
+
+        @keyframes happyBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(-14px) scale(1.06); }
+            60% { transform: translateY(2px) scale(0.95); }
+            80% { transform: translateY(-4px) scale(1.02); }
+        }
+
+        .card.state-bad .eye-bounce {
+            animation: angryShake 0.55s ease;
+        }
+
+        @keyframes angryShake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            15% { transform: translateX(-7px) rotate(-2deg); }
+            30% { transform: translateX(6px) rotate(2deg); }
+            45% { transform: translateX(-4px) rotate(-1deg); }
+            60% { transform: translateX(3px) rotate(1deg); }
+            75% { transform: translateX(-2px) rotate(0deg); }
+        }
+
+        .eye-wrap svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .sun-rays {
+            transform-origin: 145px 105px;
+            animation: rotateRays 20s linear infinite;
+        }
+
+        @keyframes rotateRays {
+            to { transform: rotate(360deg); }
+        }
+
+        .pupil-group {
+            transition: transform 0.3s ease;
+            transform-origin: 145px 105px;
+        }
+
+        .card.state-loading .pupil-group {
+            animation: blinkFast 0.7s ease-in-out infinite;
+        }
+
+        @keyframes blinkFast {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.1); }
+        }
+
+        .card:not(.state-loading) .pupil-group {
+            animation: blinkSlow 5.5s ease-in-out infinite;
+        }
+
+        @keyframes blinkSlow {
+            0%, 92%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.08); }
+        }
+
+        .iris {
+            transition: fill 0.4s ease, filter 0.4s ease;
+        }
+        .card.state-good .iris {
+            fill: var(--turquoise) !important;
+            filter: drop-shadow(0 0 8px var(--turquoise-glow));
+        }
+        .card.state-bad .iris {
+            fill: var(--coral) !important;
+            filter: drop-shadow(0 0 8px var(--coral-glow));
+        }
+
+        .eye-glow {
+            transition: opacity 0.45s ease;
+            opacity: 0;
+        }
+        .card.state-good .eye-glow.good-glow {
+            opacity: 0.6;
+        }
+        .card.state-bad .eye-glow.bad-glow {
+            opacity: 0.6;
+        }
+
+        .sparkle {
+            animation: twinkle 2.2s ease-in-out infinite;
+            transform-origin: center;
+        }
+        .sparkle.s1 { animation-delay: 0s; }
+        .sparkle.s2 { animation-delay: 0.55s; }
+        .sparkle.s3 { animation-delay: 1.1s; }
+        .sparkle.s4 { animation-delay: 1.65s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.35; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .card.state-loading .sparkle {
+            animation-duration: 0.8s;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin: 0;
+            text-align: center;
+            color: var(--ink);
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 span {
+            color: var(--gold-deep);
+            animation: blinkCursor 1.6s step-end infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .sub {
+            font-size: 11.5px;
+            letter-spacing: 0.06em;
+            color: var(--ink-soft);
+            text-transform: uppercase;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        form {
+            position: relative;
+            z-index: 2;
+            margin-top: 18px;
+        }
+
+        .field {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .field svg.field-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            stroke: var(--gold-deep);
+            fill: none;
+            pointer-events: none;
+            transition: stroke 0.3s ease;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            background: var(--white);
+            border: 1.5px solid var(--gold-line);
+            border-radius: 14px;
+            padding: 15px 16px 15px 46px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.03em;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        input[type="text"]::placeholder {
+            color: var(--ink-faint);
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--gold-deep);
+            box-shadow: 0 0 0 4px var(--gold-soft);
+            background: #fffefb;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 15px 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14.5px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            background: linear-gradient(180deg, #f0c84a 0%, var(--gold) 40%, #c48710 100%);
+            color: #3d2e1e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: filter 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+            box-shadow: 0 8px 20px -6px rgba(230, 168, 23, 0.45), 0 2px 6px rgba(180, 120, 10, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+            transform: translateX(-100%);
+            animation: shimmerBtn 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerBtn {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        button:hover {
+            filter: brightness(1.06);
+            box-shadow: 0 10px 24px -6px rgba(230, 168, 23, 0.55), 0 3px 8px rgba(180, 120, 10, 0.3);
+        }
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 4px 12px -4px rgba(230, 168, 23, 0.4);
+        }
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            filter: none;
+            box-shadow: 0 4px 12px -4px rgba(180, 150, 80, 0.3);
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2.5px solid rgba(61, 46, 30, 0.25);
+            border-top-color: #3d2e1e;
+            animation: spin 0.7s linear infinite;
+            display: none;
+            flex-shrink: 0;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .state-loading .spinner {
+            display: inline-block;
+        }
+        .state-loading .btn-label::after {
+            content: "Checking…";
+        }
+        .idle .btn-label::after {
+            content: "Check number";
+        }
+
+        .result {
+            margin-top: 16px;
+            border-radius: 14px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border: 1.5px solid transparent;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.35s ease, max-height 0.35s ease, margin-top 0.35s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .result.show {
+            opacity: 1;
+            max-height: 180px;
+            margin-top: 16px;
+        }
+
+        .result .r-icon {
+            width: 22px;
+            height: 22px;
+            flex: 0 0 auto;
+            margin-top: 1px;
+        }
+
+        .result .r-text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .result .r-title {
+            font-weight: 600;
+            font-size: 14.5px;
+            letter-spacing: 0.01em;
+        }
+        .result .r-sub {
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .result.good {
+            background: rgba(61, 184, 184, 0.1);
+            border-color: rgba(61, 184, 184, 0.4);
+        }
+        .result.good .r-icon { color: var(--turquoise); }
+        .result.good .r-title { color: #1a7a7a; }
+
+        .result.bad {
+            background: rgba(242, 95, 76, 0.1);
+            border-color: rgba(242, 95, 76, 0.4);
+        }
+        .result.bad .r-icon { color: var(--coral); }
+        .result.bad .r-title { color: #c03e2c; }
+
+        .result.error {
+            background: rgba(230, 168, 23, 0.08);
+            border-color: var(--gold-line);
+        }
+        .result.error .r-icon { color: var(--gold-deep); }
+        .result.error .r-title { color: var(--gold-deep); }
+
+        .footer-note {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 10.5px;
+            letter-spacing: 0.05em;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 420px) {
+            .card { padding: 24px 18px 20px; border-radius: 18px; }
+            .eye-wrap { width: 200px; height: 132px; }
+            h1 { font-size: 17px; }
+            input[type="text"] { font-size: 15px; padding: 14px 14px 14px 42px; }
+            button { font-size: 13.5px; padding: 14px; }
+            .card::after { inset: 5px; }
+        }
+
+        @media (min-width: 520px) {
+            .eye-wrap { width: 280px; height: 183px; }
+            h1 { font-size: 23px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card idle" id="card">
+        <div class="brand">
+            <div class="eye-wrap">
+                <div class="eye-bounce" id="eyeBounce">
+                    <!-- Authentic Solid Eye of Horus SVG -->
+                    <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="sunDiscGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#f5c542" stop-opacity="0.35" />
+                                <stop offset="60%" stop-color="#f5c542" stop-opacity="0.1" />
+                                <stop offset="100%" stop-color="#f5c542" stop-opacity="0" />
+                            </radialGradient>
+                            <radialGradient id="glowGood" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#3db8b8" stop-opacity="0.85" />
+                                <stop offset="100%" stop-color="#3db8b8" stop-opacity="0" />
+                            </radialGradient>
+                            <radialGradient id="glowBad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#f25f4c" stop-opacity="0.85" />
+                                <stop offset="100%" stop-color="#f25f4c" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+
+                        <!-- Subtle sun disc behind -->
+                        <circle cx="145" cy="105" r="62" fill="url(#sunDiscGrad)" />
+
+                        <!-- Rotating decorative sun rays -->
+                        <g class="sun-rays" opacity="0.4">
+                            <line x1="145" y1="10" x2="145" y2="32" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="145" y1="178" x2="145" y2="200" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="35" y1="105" x2="57" y2="105" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="233" y1="105" x2="255" y2="105" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="52" y1="28" x2="68" y2="44" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="222" y1="166" x2="238" y2="182" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="52" y1="182" x2="68" y2="166" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="222" y1="44" x2="238" y2="28" stroke="#e6a817" stroke-width="2" stroke-linecap="round" />
+                            <line x1="82" y1="18" x2="90" y2="36" stroke="#e6a817" stroke-width="1.8" stroke-linecap="round" />
+                            <line x1="200" y1="174" x2="208" y2="192" stroke="#e6a817" stroke-width="1.8" stroke-linecap="round" />
+                            <line x1="200" y1="18" x2="208" y2="36" stroke="#e6a817" stroke-width="1.8" stroke-linecap="round" />
+                            <line x1="82" y1="174" x2="90" y2="192" stroke="#e6a817" stroke-width="1.8" stroke-linecap="round" />
+                        </g>
+
+                        <!-- Eye glow layers -->
+                        <circle class="eye-glow good-glow" cx="145" cy="105" r="48" fill="url(#glowGood)" />
+                        <circle class="eye-glow bad-glow" cx="145" cy="105" r="48" fill="url(#glowBad)" />
+
+                        <!-- Sparkles -->
+                        <path class="sparkle s1" d="M72 48 L75 56 L83 59 L75 62 L72 70 L69 62 L61 59 L69 56 Z" fill="#e6a817" opacity="0.6" />
+                        <path class="sparkle s2" d="M198 48 L201 56 L209 59 L201 62 L198 70 L195 62 L187 59 L195 56 Z" fill="#f0c84a" opacity="0.6" />
+                        <path class="sparkle s3" d="M80 155 L83 163 L91 166 L83 169 L80 177 L77 169 L69 166 L77 163 Z" fill="#e6a817" opacity="0.6" />
+                        <path class="sparkle s4" d="M190 152 L193 159 L200 162 L193 165 L190 172 L187 165 L180 162 L187 159 Z" fill="#5ad0d0" opacity="0.6" />
+
+                        <!-- AUTHENTIC SOLID SHAPES (Matching image_0f1a66.png) -->
+                        
+                        <!-- Eyebrow -->
+                        <path d="M 15 60 C 70 25 150 25 250 55 C 270 60 285 65 295 70 C 250 45 150 40 70 55 C 40 60 25 60 15 60 Z" fill="#3d2e1e" />
+
+                        <!-- Main Eye Background (The heavy outer eyeliner) -->
+                        <path d="M 5 105 C 40 75 90 55 145 55 C 200 55 260 75 295 110 C 250 115 200 150 145 150 C 90 150 30 125 5 105 Z" fill="#3d2e1e" />
+
+                        <!-- White of the Eye -->
+                        <path d="M 25 105 C 60 85 100 65 145 65 C 190 65 235 85 270 105 C 230 120 190 140 145 140 C 100 140 60 120 25 105 Z" fill="#fffdf5" />
+
+                        <!-- Pupil Group (Centered and structured for animations) -->
+                        <g class="pupil-group">
+                            <circle class="iris" cx="145" cy="102" r="26" fill="#1a3a5c" />
+                            <!-- Subtle reflection to add life -->
+                            <circle cx="138" cy="93" r="4.5" fill="#ffffff" opacity="0.8" />
+                            <circle cx="148" cy="107" r="2" fill="#ffffff" opacity="0.4" />
+                        </g>
+
+                        <!-- Falcon Drop (Right cheek mark) -->
+                        <path d="M 175 140 L 175 200 L 210 165 L 190 160 L 195 133 Z" fill="#3d2e1e" />
+
+                        <!-- Spiral / Teardrop (Left cheek mark) -->
+                        <path d="M 125 140 C 100 190 30 210 30 160 C 30 130 65 125 75 145 C 80 155 70 170 55 165 C 45 160 45 145 55 140 C 85 120 100 185 135 140 Z" fill="#3d2e1e" />
+                        
+                    </svg>
+                </div>
+            </div>
+            <h1>DNC Checker <span>_</span> ICO</h1>
+            <p class="sub">Do-not-call registry lookup</p>
+        </div>
+
+        <form id="checkForm" autocomplete="off">
+            <div class="field">
+                <svg class="field-icon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.35 1.78.68 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.25a2 2 0 0 1 2.11-.45c.84.33 1.72.56 2.62.68A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <input type="text" id="phoneInput" placeholder="Enter phone number" inputmode="tel" />
+            </div>
+
+            <button type="submit" id="checkBtn">
+                <span class="spinner"></span>
+                <span class="btn-label"></span>
+            </button>
+        </form>
+
+        <div class="result" id="result">
+            <svg class="r-icon" id="resultIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+            <div class="r-text">
+                <div class="r-title" id="resultTitle"></div>
+                <div class="r-sub" id="resultSub"></div>
+            </div>
+        </div>
+
+        <p class="footer-note">Incall Outsourcing • ICO</p>
+    </div>
+
+    <script>
+        // ---- CONFIG -------------------------------------------------------
+        // Paste your Apps Script Web App deployment URL (ends in /exec) here.
+        var API_URL = "PASTE_YOUR_DEPLOYMENT_URL_HERE";
+        // --------------------------------------------------------------------
+
+        var ICONS = {
+            check: '<polyline points="20 6 9 17 4 12"></polyline>',
+            x: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
+            warn: '<path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>'
+        };
+
+        var card = document.getElementById('card');
+        var form = document.getElementById('checkForm');
+        var input = document.getElementById('phoneInput');
+        var btn = document.getElementById('checkBtn');
+        var result = document.getElementById('result');
+        var resultIcon = document.getElementById('resultIcon');
+        var resultTitle = document.getElementById('resultTitle');
+        var resultSub = document.getElementById('resultSub');
+        var eyeBounce = document.getElementById('eyeBounce');
+
+        function normalize(value) {
+            return String(value || '').replace(/[^0-9]/g, '');
+        }
+
+        function setCardState(state) {
+            card.classList.remove('idle', 'state-loading', 'state-good', 'state-bad');
+            card.classList.add(state);
+            void eyeBounce.offsetWidth;
+        }
+
+        function showResult(kind, title, sub) {
+            result.className = 'result show ' + kind;
+            resultIcon.innerHTML = kind === 'good' ? ICONS.check : (kind === 'bad' ? ICONS.x : ICONS.warn);
+            resultTitle.textContent = title;
+            resultSub.textContent = sub || '';
+        }
+
+        function hideResult() {
+            result.className = 'result';
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (btn.disabled) return;
+
+            var raw = input.value;
+            var digits = normalize(raw);
+
+            if (!digits) {
+                setCardState('idle');
+                showResult('error', 'Enter a phone number', 'Type or paste digits, spaces, dashes, or parentheses are fine.');
+                return;
+            }
+
+            if (!API_URL || API_URL.indexOf('PASTE_') === 0) {
+                setCardState('idle');
+                showResult('error', 'Checker not connected', 'Add your Apps Script deployment URL to API_URL in the code.');
+                return;
+            }
+
+            btn.disabled = true;
+            setCardState('state-loading');
+            hideResult();
+
+            var url = API_URL + (API_URL.indexOf('?') === -1 ? '?' : '&') + 'phone=' + encodeURIComponent(digits);
+
+            fetch(url)
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    btn.disabled = false;
+
+                    if (!data || data.success !== true) {
+                        setCardState('idle');
+                        showResult('error', 'Could not complete check', (data && data.error) ? data.error :
+                            'Unexpected response from the sheet.');
+                        return;
+                    }
+
+                    if (data.found) {
+                        setCardState('state-bad');
+                        showResult('bad', 'This phone number is not good to go', formatPhone(data.phone) +
+                            ' is on the list.');
+                    } else {
+                        setCardState('state-good');
+                        showResult('good', 'Good to go', formatPhone(data.phone) + ' is clear.');
+                    }
+                })
+                .catch(function() {
+                    btn.disabled = false;
+                    setCardState('idle');
+                    showResult('error', "Couldn't reach the checker", 'Check your connection and try again.');
+                });
+        });
+
+        function formatPhone(digits) {
+            if (!digits) return '';
+            if (digits.length === 10) {
+                return digits.slice(0, 3) + '-' + digits.slice(3, 6) + '-' + digits.slice(6);
+            }
+            return digits;
+        }
+
+        input.addEventListener('input', function() {
+            if (!result.classList.contains('show')) return;
+            hideResult();
+            setCardState('idle');
+        });
+    </script>
+</body>
+</html>
